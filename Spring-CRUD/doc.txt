@@ -1,0 +1,125 @@
+# Documentação do Projeto Spring Boot
+
+## Resumo
+Este é um projeto Spring Boot que demonstra um aplicativo de exemplo com suporte a Spring Data JPA e documentação de API usando o Springdoc OpenAPI.
+
+## Tecnologias Utilizadas
+- Java 17
+- Spring Boot 3.1.5
+- H2 Database (banco de dados em memória)
+- Spring Data JPA
+- Spring Web (para aplicativos web)
+- Springdoc OpenAPI (para documentação de API)
+- Spring Boot DevTools (ferramentas de desenvolvimento em tempo de execução)
+
+## Descrição do Projeto
+Este projeto é um exemplo de um aplicativo Spring Boot que usa o Spring Data JPA para persistência de dados e fornece uma API documentada usando o Springdoc OpenAPI. Ele utiliza o banco de dados H2, que é um banco de dados em memória.
+
+## Funcionalidades
+-Criação de Produtos (Create):
+Permite a adição de novos produtos com um nome e um preço específico.
+
+-Leitura de Produtos (Read):
+Recupera informações de produtos existentes.
+Lista todos os produtos disponíveis no sistema, exibindo seus nomes e preços.
+
+-Atualização de Produtos (Update):
+Permite a modificação dos detalhes de produtos já existentes, como a atualização do nome ou preço.
+
+-Exclusão de Produtos (Delete):
+Remove produtos do sistema de acordo com o ID do produto.
+
+-Validações de Dados:
+Implementa validações para garantir que os nomes dos produtos sejam únicos, evitando duplicações.
+Valida se o preço do produto é um valor válido (por exemplo, preço não pode ser negativo).
+
+-Tratamento de Erros:
+Lida com erros de forma adequada, fornecendo mensagens de erro significativas em caso de falhas nas operações CRUD.
+
+-Documentação da API:
+Gera uma documentação clara da API que descreve os endpoints disponíveis, seus parâmetros e respostas.
+Inclui exemplos de solicitações e respostas para facilitar o entendimento.
+
+-Testes Unitários:
+Inclui testes unitários para verificar se as operações CRUD funcionam conforme o esperado.
+
+-Logs:
+Registra eventos e atividades importantes em logs para rastrear o histórico de operações no sistema.
+
+## Estrutura do Projeto
+|-- src
+|   |-- main
+|       |-- java
+|       |   |-- com
+|       |       |-- example
+|       |           |-- productapi
+|       |               |-- controller
+|       |               |   |-- ProductController.java
+|       |               |-- model
+|       |               |   |-- Product.java
+|       |               |-- repository
+|       |               |   |-- ProductRepository.java
+|       |               |-- service
+|       |               |   |-- ProductService.java
+|       |               |-- ProductApiApplication.java
+|       |-- resources
+|           |-- application.properties
+|           |-- data.sql
+
+src/main/java/com/example/productapi: Este é o pacote principal do projeto. Ele contém as classes Java que formam o código-fonte da sua aplicação.
+
+controller: Neste pacote, você encontrará a classe ProductController.java, que é responsável por lidar com as requisições HTTP e fornecer uma interface para os endpoints da API.
+
+model: O pacote model contém a classe Product.java, que representa a entidade de modelo para os produtos. Esta classe define a estrutura de dados que será armazenada no banco de dados.
+
+repository: Aqui você encontrará a classe ProductRepository.java, que é responsável pela comunicação com o banco de dados. Ela fornece métodos para executar operações de leitura e gravação no banco de dados em relação à entidade de produto.
+
+service: O pacote service abriga a classe ProductService.java. Esta classe contém a lógica de negócios da sua aplicação relacionada aos produtos. Ela interage com o repositório para buscar e manipular dados.
+
+ProductApiApplication.java: Esta é a classe principal da aplicação, responsável por iniciar a aplicação Spring Boot.
+
+src/main/resources: Esta pasta contém recursos não relacionados a código-fonte.
+
+application.properties: O arquivo application.properties é usado para configurar propriedades da aplicação, como configurações do banco de dados e configurações de Spring.
+
+data.sql: O arquivo data.sql é um arquivo de script SQL que pode ser usado para preencher o banco de dados com dados iniciais, como produtos iniciais, quando a aplicação é iniciada.
+
+## Configurações
+### application.properties
+- `spring.datasource.url`: URL do banco de dados H2 em memória.
+- `spring.datasource.driverClassName`: Driver JDBC para o H2.
+- `spring.datasource.username`: Nome de usuário do banco de dados (neste caso, "sa").
+- `spring.datasource.password`: Senha do banco de dados.
+- `spring.jpa.database-platform`: Dialeto do Hibernate para H2.
+- `springdoc.api-docs.path`: Caminho para a documentação da API.
+- `springdoc.swagger-ui.path`: Caminho para a interface Swagger UI.
+- `springdoc.version`: Versão do Springdoc OpenAPI.
+- `springdoc.show-actuator`: Se deve mostrar informações do Spring Actuator na documentação.
+
+## Executando o Projeto
+-Pré-requisitos
+Antes de prosseguir, verifique se você possui os seguintes pré-requisitos instalados:
+Java Development Kit (JDK) - Versão 17 ou superior.
+-Testes da API 
+Você pode usar ferramentas como Postman ou curl para fazer solicitações à API. Aqui estão alguns exemplos de solicitações:
+Criar um Produto (POST):
+POST http://localhost:8080/api/products
+"Body: JSON com dados do produto"
+
+Listar Produtos (GET):
+GET http://localhost:8080/api/products
+
+Obter um Produto por ID (GET):
+GET http://localhost:8080/api/products/{id}
+
+Atualizar um Produto (PUT):
+PUT http://localhost:8080/api/products/{id}
+"Body: JSON com dados atualizados do produto"
+
+Excluir um Produto (DELETE):
+DELETE http://localhost:8080/api/products/{id}
+
+
+## Documentação da API
+- A documentação da API está disponível em http://localhost:8080/swagger-ui/index.html#/.
+- Use a interface Swagger UI para explorar a API.
